@@ -13,8 +13,12 @@ public class IsValidBST {
     }
     Stack<TreeNode> stack = new Stack<>();
     TreeNode pre = null;
+    int iteration = 1;
     while (root != null || !stack.isEmpty()) {
+      System.out.printf("%d iteration", iteration++);
+      int iterationIn = 1;
       while (root != null) {
+        System.out.printf("%d iterationIn", iterationIn++);
         System.out.printf("pushing root inner while: %d \n", root.val);
         stack.push(root);
         root = root.left;
