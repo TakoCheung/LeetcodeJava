@@ -1,7 +1,9 @@
 package com.leetcode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 import com.leetcode.util.TreeNode;
@@ -69,14 +71,23 @@ public class TreeUtil {
 
   public List<List<Integer>> levelOrder(TreeNode root) {
     List<List<Integer>> ret = new ArrayList<>();
-    if (root != null) {
-      ret.add(new ArrayList() {
-        {
-          add(root.val);
-        }
-      });
+    if (root == null) {
+      return ret;
     }
-    levelOrderHelper(root.left, root.right, ret, 2);
+    Queue<TreeNode> levelQueue = new LinkedList<>();
+    levelQueue.add(root);
+    while (!levelQueue.isEmpty()) {
+      int levelSize = levelQueue.size();
+      List<Integer> currentLevel = new ArrayList<>();
+      for (int i = 0; i < levelSize; i++) {
+        TreeNode currentNode = levelQueue.poll();
+        currentLevel.add(currentNode.val);
+        if (currentNode.left != null)
+          levelQueue.add(currentNode.left);
+        if (currentNode.right != null)
+          levelQueue.add(currentNode.right);
+      }
+    }
     return ret;
   }
 
@@ -142,8 +153,4 @@ public class TreeUtil {
     return node1.val == node2.val && isEqual(node1.right, node2.left) && isEqual(node2.right, node1.left);
   }
 
-  void levelOrderHelper(TreeNode left, TreeNode right, List<List<Integer>> ret, int i) {
-    ret.get(i).add(left.val);
-    ret.get(i).add(right.val);
-  }
 }
