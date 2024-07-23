@@ -87,6 +87,7 @@ public class TreeUtil {
         if (currentNode.right != null)
           levelQueue.add(currentNode.right);
       }
+      ret.add(currentLevel);
     }
     return ret;
   }
