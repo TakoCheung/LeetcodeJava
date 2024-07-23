@@ -7,6 +7,23 @@ import java.util.Stack;
 import com.leetcode.util.TreeNode;
 
 public class TreeUtil {
+  public List<Integer> inorderTraversal(TreeNode root, List<Integer> list) {
+    if (root == null)
+      return list;
+    Stack<TreeNode> stack = new Stack<>();
+    while (root != null || !stack.empty()) {
+      while (root != null) {
+        stack.push(root);
+        root = root.left;
+      }
+      root = stack.pop();
+      list.add(root.val);
+      root = root.right;
+
+    }
+    return list;
+  }
+
   public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> res = new ArrayList<>();
     inorderTraversalHelper(root, res);
@@ -32,6 +49,35 @@ public class TreeUtil {
   public TreeNode insertIntoBST(TreeNode root, int val) {
     root = insertIntoBSTHelper(root, val);
     return root;
+  }
+
+  public int maxDepth(TreeNode root) {
+    if (root == null)
+      return 0;
+    if (root.left == null && root.right == null)
+      return 1;
+    if (root.right != null)
+      return 1 + maxDepth(root.right);
+    if (root.left != null)
+      return 1 + maxDepth(root.left);
+    return Math.max(maxDepth(root.right), maxDepth(root.left)) + 1;
+  }
+
+  public boolean isSymmetric(TreeNode root) {
+    return isEqual(root.left, root.right);
+  }
+
+  public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> ret = new ArrayList<>();
+    if (root != null) {
+      ret.add(new ArrayList() {
+        {
+          add(root.val);
+        }
+      });
+    }
+    levelOrderHelper(root.left, root.right, ret, 2);
+    return ret;
   }
 
   // helper method
@@ -73,7 +119,7 @@ public class TreeUtil {
     return true;
   }
 
-  private TreeNode insertIntoBSTHelper(TreeNode temp, int val) {
+  TreeNode insertIntoBSTHelper(TreeNode temp, int val) {
     if (temp == null) {
       return new TreeNode(val);
     } else {
@@ -84,5 +130,20 @@ public class TreeUtil {
     }
     System.gc();
     return temp;
+  }
+
+  boolean isEqual(TreeNode node1, TreeNode node2) {
+    if (node1 == null && node2 == null) {
+      return true;
+    }
+    if (node1 == null || node2 == null) {
+      return false;
+    }
+    return node1.val == node2.val && isEqual(node1.right, node2.left) && isEqual(node2.right, node1.left);
+  }
+
+  void levelOrderHelper(TreeNode left, TreeNode right, List<List<Integer>> ret, int i) {
+    ret.get(i).add(left.val);
+    ret.get(i).add(right.val);
   }
 }

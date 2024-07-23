@@ -97,4 +97,55 @@ public class TreeUtilTest {
     treeUtil.insertIntoBST(root1, 25);
     assertArrayEquals(new int []{10,20,25,30,40,50,60,70}, treeUtil.inorderTraversal(root1).stream().mapToInt(i -> i).toArray());
   }
+
+  @Test
+  public void testMaxDepth() {
+    TreeUtil treeUtil = new TreeUtil();
+    
+    TreeNode root = new TreeNode(4);
+    root.left = new TreeNode(2);
+    root.left.left = new TreeNode(1);
+    root.left.right = new TreeNode(3);
+    root.right = new TreeNode(7);
+    assertEquals(2, treeUtil.maxDepth(root));
+
+    TreeNode root1 = new TreeNode(40);
+    root1.left = new TreeNode(20);
+    root1.left.left = new TreeNode(10);
+    root1.left.right = new TreeNode(30);
+    root1.right = new TreeNode(60);
+    root1.right.left = new TreeNode(50);
+    root1.right.right = new TreeNode(70);
+    assertEquals(2, treeUtil.maxDepth(root));
+  }
+
+  @Test
+  public void testisSymmetric() {
+    TreeUtil treeUtil = new TreeUtil();
+    
+    TreeNode root = new TreeNode(4);
+    root.left = new TreeNode(2);
+    root.left.left = new TreeNode(1);
+    root.left.right = new TreeNode(3);
+    root.right = new TreeNode(7);
+    assertFalse(treeUtil.isSymmetric(root));
+
+    TreeNode root1 = new TreeNode(40);
+    root1.left = new TreeNode(20);
+    root1.left.left = new TreeNode(10);
+    root1.left.right = new TreeNode(30);
+    root1.right = new TreeNode(60);
+    root1.right.left = new TreeNode(50);
+    root1.right.right = new TreeNode(70);
+    assertFalse(treeUtil.isSymmetric(root1));
+
+    TreeNode root2 = new TreeNode(40);
+    root1.left = new TreeNode(20);
+    root1.left.left = new TreeNode(10);
+    root1.left.right = new TreeNode(30);
+    root1.right = new TreeNode(20);
+    root1.right.left = new TreeNode(30);
+    root1.right.right = new TreeNode(10);
+    assertTrue(treeUtil.isSymmetric(root2));
+  }
 }
