@@ -184,23 +184,38 @@ public class TreeUtilTest {
         });
       }
     }, treeUtil.levelOrder(root));
+  }
 
-    // TreeNode root1 = new TreeNode(40);
-    // root1.left = new TreeNode(20);
-    // root1.left.left = new TreeNode(10);
-    // root1.left.right = new TreeNode(30);
-    // root1.right = new TreeNode(60);
-    // root1.right.left = new TreeNode(50);
-    // root1.right.right = new TreeNode(70);
-    // assertFalse(treeUtil.isSymmetric(root1));
+  @Test
+  public void testLowestCommonAncestor() {
+    TreeUtil treeUtil = new TreeUtil();
 
-    // TreeNode root2 = new TreeNode(40);
-    // root1.left = new TreeNode(20);
-    // root1.left.left = new TreeNode(10);
-    // root1.left.right = new TreeNode(30);
-    // root1.right = new TreeNode(20);
-    // root1.right.left = new TreeNode(30);
-    // root1.right.right = new TreeNode(10);
-    // assertTrue(treeUtil.isSymmetric(root2));
+    TreeNode root = new TreeNode(6);
+    root.left = new TreeNode(2);
+    root.right = new TreeNode(8);
+    root.left.left = new TreeNode(0);
+    root.left.right = new TreeNode(4);
+    root.right.left = new TreeNode(7);
+    root.right.right = new TreeNode(9);
+    root.left.right.left = new TreeNode(3);
+    root.left.right.right = new TreeNode(5);
+
+    TreeNode p = root.left; // Node with value 2
+    TreeNode q = root.left.right; // Node with value 4
+
+    TreeNode lca = treeUtil.lowestCommonAncestor(root, p, q);
+    assertEquals(2, lca.val);
+
+    p = root.left; // Node with value 2
+    q = root.right; // Node with value 8
+
+    lca = treeUtil.lowestCommonAncestor(root, p, q);
+    assertEquals(6, lca.val);
+
+    p = root.left.right.left; // Node with value 3
+    q = root.left.right.right; // Node with value 5
+
+    lca = treeUtil.lowestCommonAncestor(root, p, q);
+    assertEquals(4, lca.val);
   }
 }

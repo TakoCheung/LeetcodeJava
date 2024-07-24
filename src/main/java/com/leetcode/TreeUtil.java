@@ -92,6 +92,19 @@ public class TreeUtil {
     return ret;
   }
 
+  public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    if (root == null) {
+      return null;
+    }
+    if (root.val > p.val && root.val > q.val) {
+      return lowestCommonAncestor(root.left, p, q);
+    }
+    if (root.val < p.val && root.val < q.val) {
+      return lowestCommonAncestor(root.right, p, q);
+    }
+    return root;
+  }
+
   // helper method
   void inorderTraversalHelper(TreeNode root, List<Integer> res) {
     if (root != null) {
