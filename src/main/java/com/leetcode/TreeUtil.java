@@ -9,22 +9,6 @@ import java.util.Stack;
 import com.leetcode.util.TreeNode;
 
 public class TreeUtil {
-  public List<Integer> inorderTraversal(TreeNode root, List<Integer> list) {
-    if (root == null)
-      return list;
-    Stack<TreeNode> stack = new Stack<>();
-    while (root != null || !stack.empty()) {
-      while (root != null) {
-        stack.push(root);
-        root = root.left;
-      }
-      root = stack.pop();
-      list.add(root.val);
-      root = root.right;
-
-    }
-    return list;
-  }
 
   public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> res = new ArrayList<>();
@@ -105,7 +89,48 @@ public class TreeUtil {
     return root;
   }
 
+  public TreeNode deleteNode(TreeNode root, int key) {
+    if (root == null)
+      return null;
+
+    if (root.val > key) {
+      root.left = deleteNode(root.left, key);
+    } else if (root.val < key) {
+      root.right = deleteNode(root.right, key);
+    } else {
+      if (root.left == null)
+        return root.right;
+      if (root.right == null)
+        return root.left;
+
+      TreeNode rightSmallest = root.right;
+      while (rightSmallest.left != null)
+        rightSmallest = rightSmallest.left;
+      rightSmallest.left = root.left;
+      return root.right;
+    }
+    return root;
+  }
+
+  public List<Integer> inorderTraversal(TreeNode root, List<Integer> list) {
+    if (root == null)
+      return list;
+    Stack<TreeNode> stack = new Stack<>();
+    while (root != null || !stack.empty()) {
+      while (root != null) {
+        stack.push(root);
+        root = root.left;
+      }
+      root = stack.pop();
+      list.add(root.val);
+      root = root.right;
+
+    }
+    return list;
+  }
+
   // helper method
+
   void inorderTraversalHelper(TreeNode root, List<Integer> res) {
     if (root != null) {
       inorderTraversalHelper(root.left, res);
