@@ -35,4 +35,9 @@ public class TwoPointersTest {
       }
     }, twoPointers.threeSum(new int[] { -1, 0, 1, 2, -1, -4 }));
   }
+
+  @Test
+  public void testMaxArea() {
+    assertEquals(49 , twoPointers.maxArea(new int[] { 1,8,6,2,5,4,8,3,7}));
+  }
 }
