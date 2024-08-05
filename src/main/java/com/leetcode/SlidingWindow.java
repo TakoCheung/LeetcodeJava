@@ -19,7 +19,7 @@ public class SlidingWindow {
       sum = sum - nums[i - k] + nums[i];
       maxAvg = Math.max(maxAvg, sum / deK);
     }
-    return maxAvg;
+    return Math.round(maxAvg*100000)/100000.0d;
   }
 
   public int lengthOfLongestSubstring(String s) {
