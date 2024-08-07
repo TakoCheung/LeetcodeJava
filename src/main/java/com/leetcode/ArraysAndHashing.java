@@ -208,6 +208,29 @@ public class ArraysAndHashing {
   }
 
   public boolean isValidSudoku(char[][] board) {
+    Map<Character, Integer> checker = new HashMap<>(9);
+    List<List<Character>> subBoard = new ArrayList<>();
+    for (char[] row : board) {
+      for (char c : row) {
+        if (c != '.') {
+          checker.put(c, checker.getOrDefault(c, 0) + 1);
+        }
+      }
+      if (!isValidFromCheck(checker)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private boolean isValidFromCheck(Map<Character, Integer> checker) {
+    for (Map.Entry<Character, Integer> entry : checker.entrySet()) {
+      if (entry.getValue() > 1) {
+        return false;
+      } else {
+        entry.setValue(0);
+      }
+    }
     return true;
   }
 }
