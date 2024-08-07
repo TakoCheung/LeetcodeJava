@@ -37,7 +37,8 @@ public class TwoPointers {
     Arrays.sort(nums);
     List<List<Integer>> ret = new ArrayList<>();
     for (int i = 0; i < nums.length - 2; i++) {
-      if (i > 0 && nums[i] == nums[i - 1]) continue;
+      if (i > 0 && nums[i] == nums[i - 1])
+        continue;
       int left = i + 1;
       int right = nums.length - 1;
       while (left < right) {
@@ -72,11 +73,56 @@ public class TwoPointers {
       int area = (right - left) * Math.min(height[left], height[right]);
       if (height[right] > height[left]) {
         left++;
-      }else{
+      } else {
         right--;
       }
       ret = Math.max(area, ret);
     }
     return ret;
+  }
+
+  public boolean isPalindrome(String s) {
+    var str = s.toLowerCase().replaceAll("[^A-Za-z0-9\\t]", "");
+    // System.out.println(str);
+    var charArray = str.toCharArray();
+    int front = 0;
+    int back = charArray.length - 1;
+    for (int i = 0; i < charArray.length / 2; i++) {
+      // System.out.printf("i:%d | charArray[front]:%c | charArray[back]:%c\n", i,
+      // charArray[front], charArray[back]);
+      if (charArray[front++] != charArray[back--]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public int[] twoSumSortedSlow(int[] numbers, int target) {
+    for (int i = 0; i < numbers.length; i++) {
+      int complement = target - numbers[i];
+      for (int j = i + 1; j < numbers.length; j++) {
+        if (numbers[j] == complement) {
+          return new int[] { ++i, ++j };
+        }
+      }
+    }
+    return null;
+  }
+
+  public int[] twoSumSorted(int[] numbers, int target) {
+    int left = 0, right = numbers.length-1;
+    int sum = 0;
+    while (left < right) {
+      sum = numbers[left] + numbers[right];
+      if (sum == target) {
+        return new int[]{left+1,right+1};
+      }
+      if (sum > target) {
+        right--;
+      }else{
+        left++;
+      }
+    }
+    return null;
   }
 }

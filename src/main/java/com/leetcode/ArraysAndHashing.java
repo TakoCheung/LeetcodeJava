@@ -208,15 +208,34 @@ public class ArraysAndHashing {
   }
 
   public boolean isValidSudoku(char[][] board) {
-    Map<Character, Integer> checker = new HashMap<>(9);
-    List<List<Character>> subBoard = new ArrayList<>();
-    for (char[] row : board) {
-      for (char c : row) {
-        if (c != '.') {
-          checker.put(c, checker.getOrDefault(c, 0) + 1);
+    List<Map<Character, Integer>> rowCheckers = new ArrayList<>(9);
+    List<Map<Character, Integer>> subBoxCheckers = new ArrayList<>(9);
+    List<Map<Character, Integer>> colCheckers = new ArrayList<>(9);
+    int subBoxIdx = 0;
+    for (int rowIdx = 0; rowIdx < board.length; rowIdx++) {
+      rowCheckers.add(new HashMap<>(9));
+      for (int colIdx = 0; colIdx < board[rowIdx].length; colIdx++) {
+        subBoxIdx = rowIdx / 3 * 3 + colIdx / 3;
+        if (rowIdx == 0) {
+          colCheckers.add(new HashMap<>(9));
+          subBoxCheckers.add(new HashMap<>(9));
+        }
+        if (board[rowIdx][colIdx] != '.') {
+          subBoxCheckers.get(subBoxIdx).put(board[rowIdx][colIdx],
+              subBoxCheckers.get(subBoxIdx).getOrDefault(board[rowIdx][colIdx], 0) + 1);
+          rowCheckers.get(rowIdx).put(board[rowIdx][colIdx],
+              rowCheckers.get(rowIdx).getOrDefault(board[rowIdx][colIdx], 0) + 1);
+        }
+        if (board[colIdx][rowIdx] != '.') {
+          colCheckers.get(rowIdx).put(board[colIdx][rowIdx],
+              colCheckers.get(rowIdx).getOrDefault(board[colIdx][rowIdx], 0) + 1);
         }
       }
-      if (!isValidFromCheck(checker)) {
+    }
+    for (int i = 0; i < board.length; i++) {
+      if (!isValidFromCheck(colCheckers.get(i)) 
+      || !isValidFromCheck(subBoxCheckers.get(i))
+      || !isValidFromCheck(rowCheckers.get(i))) {
         return false;
       }
     }

@@ -23,9 +23,9 @@ public class Heap {
     for (int n : nums) {
       numFrequencyMap.put(n, numFrequencyMap.getOrDefault(n, 0) + 1);
     }
-    //sort them untilizing the heap
+    // sort them untilizing the heap
     PriorityQueue<Map.Entry<Integer, Integer>> topKElements = new PriorityQueue<>(
-        (e1, e2) -> e2.getValue() - e1.getValue() );
+        (e1, e2) -> e2.getValue() - e1.getValue());
     for (Map.Entry<Integer, Integer> entry : numFrequencyMap.entrySet()) {
       topKElements.add(entry);
     }

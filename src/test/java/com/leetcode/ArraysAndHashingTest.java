@@ -1,6 +1,7 @@
 package com.leetcode;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,5 +35,17 @@ public class ArraysAndHashingTest {
       new char[]{'.','.','.','.','8','.','.','7','9'}
     };
     assertTrue(arraysAndHashing.isValidSudoku(board));
+    board = new char[][]{
+      new char[]{'.','.','4','.','.','.','6','3','.'},
+      new char[]{'.','.','.','.','.','.','.','.','.'},
+      new char[]{'5','.','.','.','.','.','.','9','.'},
+      new char[]{'.','.','.','5','6','.','.','.','.'},
+      new char[]{'4','.','3','.','.','.','.','.','1'},
+      new char[]{'.','.','.','7','.','.','.','.','.'},
+      new char[]{'.','.','.','5','.','.','.','.','.'},
+      new char[]{'.','.','.','.','.','.','.','.','.'},
+      new char[]{'.','.','.','.','.','.','.','.','.'}
+    };
+    assertFalse(arraysAndHashing.isValidSudoku(board));
   }
 }
