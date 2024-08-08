@@ -233,9 +233,9 @@ public class ArraysAndHashing {
       }
     }
     for (int i = 0; i < board.length; i++) {
-      if (!isValidFromCheck(colCheckers.get(i)) 
-      || !isValidFromCheck(subBoxCheckers.get(i))
-      || !isValidFromCheck(rowCheckers.get(i))) {
+      if (!isValidFromCheck(colCheckers.get(i))
+          || !isValidFromCheck(subBoxCheckers.get(i))
+          || !isValidFromCheck(rowCheckers.get(i))) {
         return false;
       }
     }
@@ -252,4 +252,41 @@ public class ArraysAndHashing {
     }
     return true;
   }
+
+  public boolean isValidParentheses(String s) {
+    var charArray = s.toCharArray();
+    var openMatching = new Stack<Character>();
+    for (char c : charArray) {
+      if (c == '(' || c == '{' || c == '[') {
+        openMatching.add(c);
+      } else {
+        if (openMatching.size() == 0) {
+          return false;
+        }
+        var open = openMatching.removeLast();
+        // System.out.printf("open:%c | close:%c\n", open, c);
+        switch (c) {
+          case ')':
+            if (c == ')' && open != '(') {
+              return false;
+            }
+            break;
+          case '}':
+            if (c == '}' && open != '{') {
+              return false;
+            }
+            break;
+          case ']':
+            if (c == ']' && open != '[') {
+              return false;
+            }
+            break;
+          default:
+            return false;
+        }
+      }
+    }
+    return openMatching.size() == 0;
+  }
+
 }
