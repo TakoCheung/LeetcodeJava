@@ -54,4 +54,19 @@ public class Backtracking {
   //     letterCombinationsHelper(hashmap, idx + 1, combination + String.valueOf(character), digits, result);
   //   }
   // }
+  public void backtrack(String string){
+    backtrackHelper(new ArrayList<>(), string, 0);
+  }
+
+  public void backtrackHelper(List<Character> combination, String string, int idx){
+    if(idx == string.length()){
+      System.out.println(combination.toString());
+    }
+    else{
+      combination.add(string.charAt(idx));
+      backtrackHelper(combination, string, idx + 1);
+      combination.removeLast();
+      backtrackHelper(combination, string, idx+1);
+    }
+  }
 }

@@ -1,6 +1,10 @@
 package com.leetcode;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class PrefixSumTest {
@@ -13,6 +17,13 @@ public class PrefixSumTest {
 
   @Test
   public void testSubarraySum() {
-    assertEquals(1, testPrefixSum.subarraySum(new int[] { -1, -1, 1 }, 1));
+    assertEquals(2, testPrefixSum.subarraySum(new int[] { 1, 2, 3, 4, 5 }, 9));
+  }
+
+  @Test
+  public void testSubarrayIdxSum() {
+    List<int[]> actual = testPrefixSum.subarrayIdxSum(new int[] { 1, 2, 3, 4, 5 }, 9);
+    assertArrayEquals(new int[] { 1, 3 }, actual.get(0));
+    assertArrayEquals(new int[] { 3, 4 }, actual.get(1));
   }
 }

@@ -1,6 +1,8 @@
 package com.leetcode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PrefixSum {
@@ -35,6 +37,23 @@ public class PrefixSum {
         result += preSum.get(sum - k);
       }
       preSum.put(sum, preSum.getOrDefault(sum, 0) + 1);
+    }
+    return result;
+  }
+
+  public List<int[]> subarrayIdxSum(int[] nums, int k) {
+    int sum = 0;
+    List<int[]> result = new ArrayList<>();
+    Map<Integer, Integer> preSum = new HashMap<>();
+
+    preSum.put(0, 0);
+    for (int i = 0; i < nums.length; i++) {
+      sum += nums[i];
+      int complement = sum - k;
+      if (preSum.containsKey(complement)) {
+        result.add(new int[]{preSum.get(complement), i});
+      }
+      preSum.put(sum, i+1);
     }
     return result;
   }

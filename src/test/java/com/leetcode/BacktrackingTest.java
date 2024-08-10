@@ -1,6 +1,7 @@
 package com.leetcode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
 
@@ -74,5 +75,10 @@ public class BacktrackingTest {
         add("cf");
       }
     }, "23");
+  }
+
+  @Test
+  public void testBacktrack() {
+    backtracking.backtrack("abc");
   }
 }
