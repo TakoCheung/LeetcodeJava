@@ -110,19 +110,92 @@ public class TwoPointers {
   }
 
   public int[] twoSumSorted(int[] numbers, int target) {
-    int left = 0, right = numbers.length-1;
+    int left = 0, right = numbers.length - 1;
     int sum = 0;
     while (left < right) {
       sum = numbers[left] + numbers[right];
       if (sum == target) {
-        return new int[]{left+1,right+1};
+        return new int[] { left + 1, right + 1 };
       }
       if (sum > target) {
         right--;
-      }else{
+      } else {
         left++;
       }
     }
     return null;
+  }
+
+  public int binarySearch(int[] numbers, int target) {
+    int left = 0, right = numbers.length - 1, mid = (left + right) / 2;
+    while (left <= right) {
+      mid = (left + right) / 2;
+      if (numbers[mid] == target) {
+        return mid;
+      }
+      if (numbers[mid] > target) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    }
+    return -1;
+  }
+
+  public int binarySearchClosest(int[] numbers, int target) {
+    int left = 0, right = numbers.length - 1;
+    while (left + 1 < right) {
+      int mid = left + (right - 1) / 2;
+      if (numbers[mid] > target) {
+        right = mid;
+      } else {
+        left = mid;
+      }
+    }
+    int rightDiff = Math.abs(numbers[right] - target);
+    int leftDiff = Math.abs(target - numbers[left]);
+    return rightDiff > leftDiff ? left : right;
+  }
+
+  public int binarySearchLeftMost(int[] numbers, int target) {
+    int left = 0, right = numbers.length - 1;
+    while (left + 1 < right) {
+      int mid = left + (right - 1) / 2;
+      if (numbers[mid] == target) {
+        right = mid;
+      } else if (numbers[mid] > target) {
+        right = mid;
+      } else {
+        left = mid;
+      }
+    }
+    if(numbers[left] == target){
+      return left;
+    }
+    if(numbers[right] == target){
+      return right;
+    }
+    return -1;
+  }
+
+  public int binarySearchRightMost(int[] numbers, int target) {
+    int left = 0, right = numbers.length - 1;
+    while (left + 1 < right) {
+      int mid = left + (right - 1) / 2;
+      if (numbers[mid] == target) {
+        left = mid;
+      } else if (numbers[mid] < target) {
+        right = mid;
+      } else {
+        left = mid;
+      }
+    }
+    if(numbers[right] == target){
+      return right;
+    }
+    if(numbers[left] == target){
+      return left;
+    }
+    return -1;
   }
 }

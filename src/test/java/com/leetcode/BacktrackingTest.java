@@ -1,9 +1,11 @@
 package com.leetcode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,53 +13,17 @@ public class BacktrackingTest {
   private Backtracking backtracking = new Backtracking();
 
   @Test
-  public void testPermute() {
-    assertEquals(new ArrayList<ArrayList<Integer>>() {
+  public void testPermutation() {
+    assertEquals(new ArrayList<>() {
       {
-        add(new ArrayList<>() {
-          {
-            add(1);
-            add(2);
-            add(3);
-          }
-        });
-        add(new ArrayList<>() {
-          {
-            add(1);
-            add(3);
-            add(2);
-          }
-        });
-        add(new ArrayList<>() {
-          {
-            add(2);
-            add(1);
-            add(3);
-          }
-        });
-        add(new ArrayList<>() {
-          {
-            add(2);
-            add(3);
-            add(1);
-          }
-        });
-        add(new ArrayList<>() {
-          {
-            add(3);
-            add(1);
-            add(2);
-          }
-        });
-        add(new ArrayList<>() {
-          {
-            add(3);
-            add(2);
-            add(1);
-          }
-        });
+        add(Arrays.asList(1,2,3));
+        add(Arrays.asList(1,3,2));
+        add(Arrays.asList(2,1,3));
+        add(Arrays.asList(2,3,1));
+        add(Arrays.asList(3,1,2));
+        add(Arrays.asList(3,2,1));
       }
-    }, backtracking.permute(new int[] { 1, 2, 3 }));
+    }, backtracking.permutation(new int[] { 1, 2, 3 }));
   }
 
   @Test
@@ -78,7 +44,16 @@ public class BacktrackingTest {
   }
 
   @Test
-  public void testBacktrack() {
-    backtracking.backtrack("abc");
+  public void testCombination() {
+    assertLinesMatch(new ArrayList<>(){{
+      add("abc");
+      add("ab");
+      add("ac");
+      add("a");
+      add("bc");
+      add("b");
+      add("c");
+      add("");
+    }}, backtracking.combination("abc"));
   }
 }
