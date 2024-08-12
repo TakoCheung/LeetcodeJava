@@ -9,6 +9,11 @@ import java.util.Stack;
 import com.leetcode.util.TreeNode;
 
 public class TreeUtil {
+  private boolean isBalanced = true;
+
+  public boolean isBalanced(){
+    return this.isBalanced;
+  }
 
   public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> res = new ArrayList<>();
@@ -40,13 +45,12 @@ public class TreeUtil {
   public int maxDepth(TreeNode root) {
     if (root == null)
       return 0;
-    if (root.left == null && root.right == null)
-      return 1;
-    if (root.right != null)
-      return 1 + maxDepth(root.right);
-    if (root.left != null)
-      return 1 + maxDepth(root.left);
-    return Math.max(maxDepth(root.right), maxDepth(root.left)) + 1;
+    int left = maxDepth(root.left);
+    int right = maxDepth(root.right);
+    if(Math.abs(left - right) > 1){
+      isBalanced = false;
+    }
+    return Math.max(right, left) + 1;
   }
 
   public boolean isSymmetric(TreeNode root) {
@@ -190,6 +194,17 @@ public class TreeUtil {
       return false;
     }
     return node1.val == node2.val && isEqual(node1.right, node2.left) && isEqual(node2.right, node1.left);
+  }
+
+  boolean isBalanced(TreeNode root){
+    if (root == null)
+      return true;
+    int left = maxDepth(root.left);
+    int right = maxDepth(root.right);
+    if(Math.abs(left - right) > 1){
+      return false;
+    }
+    return isBalanced(root.left) && isBalanced(root.right);
   }
 
 }

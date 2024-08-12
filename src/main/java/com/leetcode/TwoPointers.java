@@ -169,10 +169,10 @@ public class TwoPointers {
         left = mid;
       }
     }
-    if(numbers[left] == target){
+    if (numbers[left] == target) {
       return left;
     }
-    if(numbers[right] == target){
+    if (numbers[right] == target) {
       return right;
     }
     return -1;
@@ -190,12 +190,33 @@ public class TwoPointers {
         left = mid;
       }
     }
-    if(numbers[right] == target){
+    if (numbers[right] == target) {
       return right;
     }
-    if(numbers[left] == target){
+    if (numbers[left] == target) {
       return left;
     }
     return -1;
+  }
+
+  // 4 5 6 7 1 2 3
+  // L M R
+  // 5 6 7 1 2 3 4
+  // L M R
+  // 2 3 4 5 6 7 1
+  // L M R
+  public int findMin(int[] nums) {
+    int left = 0, right = nums.length - 1;
+    while (left < right) {
+      int mid = left + (right - left) / 2;
+
+      if (nums[mid] < nums[right]) {
+        right = mid;
+      } else {
+        left = mid + 1;
+      }
+    }
+
+    return nums[left];
   }
 }

@@ -112,7 +112,7 @@ public class TreeUtilTest {
     root.left.left = new TreeNode(1);
     root.left.right = new TreeNode(3);
     root.right = new TreeNode(7);
-    assertEquals(2, treeUtil.maxDepth(root));
+    assertEquals(3, treeUtil.maxDepth(root));
 
     TreeNode root1 = new TreeNode(40);
     root1.left = new TreeNode(20);
@@ -121,7 +121,8 @@ public class TreeUtilTest {
     root1.right = new TreeNode(60);
     root1.right.left = new TreeNode(50);
     root1.right.right = new TreeNode(70);
-    assertEquals(2, treeUtil.maxDepth(root));
+    root1.right.right.right = new TreeNode(80);
+    assertEquals(4, treeUtil.maxDepth(root1));
   }
 
   @Test
@@ -239,5 +240,29 @@ public class TreeUtilTest {
     treeUtil.deleteNode(root, 4);
     assertArrayEquals(new int[] { 2, 3, 5, 6, 7, 8, 9 },
         treeUtil.inorderTraversal(root).stream().mapToInt(i -> i).toArray());
+  }
+
+  @Test
+  public void testIsBalanced() {
+    TreeUtil treeUtil = new TreeUtil();
+
+    TreeNode root = new TreeNode(6);
+    root.left = new TreeNode(2);
+    root.right = new TreeNode(8);
+    root.left.left = new TreeNode(0);
+    root.left.right = new TreeNode(4);
+    root.right.left = new TreeNode(7);
+    root.right.right = new TreeNode(9);
+    root.left.right.left = new TreeNode(3);
+    root.left.right.right = new TreeNode(5);
+
+    assertTrue(treeUtil.isBalanced(root));
+    treeUtil.maxDepth(root);
+    assertTrue(treeUtil.isBalanced());
+
+    root.left.right.right.right = new TreeNode(10);
+    assertFalse(treeUtil.isBalanced(root));
+    treeUtil.maxDepth(root);
+    assertFalse(treeUtil.isBalanced());
   }
 }
