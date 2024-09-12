@@ -48,4 +48,9 @@ public class ArraysAndHashingTest {
     };
     assertFalse(arraysAndHashing.isValidSudoku(board));
   }
+
+  @Test
+  public void testIsValid() {
+    assertTrue( arraysAndHashing.isValid("[{()}]"));
+  }
 }

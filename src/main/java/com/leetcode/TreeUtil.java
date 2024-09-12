@@ -5,13 +5,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.leetcode.util.TreeNode;
 
 public class TreeUtil {
   private boolean isBalanced = true;
 
-  public boolean isBalanced(){
+  public boolean isBalanced() {
     return this.isBalanced;
   }
 
@@ -47,7 +49,7 @@ public class TreeUtil {
       return 0;
     int left = maxDepth(root.left);
     int right = maxDepth(root.right);
-    if(Math.abs(left - right) > 1){
+    if (Math.abs(left - right) > 1) {
       isBalanced = false;
     }
     return Math.max(right, left) + 1;
@@ -196,15 +198,63 @@ public class TreeUtil {
     return node1.val == node2.val && isEqual(node1.right, node2.left) && isEqual(node2.right, node1.left);
   }
 
-  boolean isBalanced(TreeNode root){
+  boolean isBalanced(TreeNode root) {
     if (root == null)
       return true;
     int left = maxDepth(root.left);
     int right = maxDepth(root.right);
-    if(Math.abs(left - right) > 1){
+    if (Math.abs(left - right) > 1) {
       return false;
     }
     return isBalanced(root.left) && isBalanced(root.right);
   }
+
+  public Map<String, Object> parseJson(String jsonString) {
+    Map<String, Object> parser = new HashMap<>();
+    return parseJsonHelper(jsonString, parser);
+  }
+
+  public Map<String, Object> parseJsonHelper(String jsonString, Map<String, Object> parser) {
+    String[] keyValueStrings = jsonString.split(":");
+    if (keyValueStrings.length == 2) {
+      parser.put(keyValueStrings[0], keyValueStrings[1]);
+    } else {
+      parser.put(keyValueStrings[0], parseJsonHelper(keyValueStrings[1], parser));
+    }
+
+    return parser;
+  }
+
+  public TreeNode invertTree(TreeNode root) {
+    invertTreeHelper(root);
+    return root;
+  }
+
+  public void invertTreeHelper(TreeNode root) {
+    if (root == null) {
+      return;
+    } else {
+      TreeNode tmp = root.right;
+      root.right = root.left;
+      root.left = tmp;
+      invertTreeHelper(root.left);
+      invertTreeHelper(root.right);
+    }
+  }
+
+  boolean isSameTree = false;
+
+  public boolean isSameTree(TreeNode p, TreeNode q) {
+    if (p == null && q == null) {
+      return true;
+    }
+
+    if (p != null && q != null && p.val == q.val) {
+      return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+
+    return false;
+  }
+
 
 }

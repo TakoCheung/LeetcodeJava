@@ -35,34 +35,32 @@ public class TwoPointers {
 
   public List<List<Integer>> threeSum(int[] nums) {
     Arrays.sort(nums);
-    List<List<Integer>> ret = new ArrayList<>();
-    for (int i = 0; i < nums.length - 2; i++) {
+    List<List<Integer>> res = new ArrayList<>();
+
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] > 0)
+        break;
       if (i > 0 && nums[i] == nums[i - 1])
         continue;
-      int left = i + 1;
-      int right = nums.length - 1;
-      while (left < right) {
-        int sum = nums[i] + nums[left] + nums[right];
-        if (sum == 0) {
-          List<Integer> triple = new ArrayList<>();
-          triple.add(nums[i]);
-          triple.add(nums[left]);
-          triple.add(nums[right]);
-          ret.add(triple);
-          while (left < right && nums[left] == nums[left + 1])
-            left++;
-          while (left < right && nums[right] == nums[right - 1])
-            right--;
-          left++;
-          right--;
-        } else if (sum > 0) {
-          right--;
+
+      int l = i + 1, r = nums.length - 1;
+      while (l < r) {
+        int sum = nums[i] + nums[l] + nums[r];
+        if (sum > 0) {
+          r--;
+        } else if (sum < 0) {
+          l++;
         } else {
-          left++;
+          res.add(Arrays.asList(nums[i], nums[l], nums[r]));
+          l++;
+          r--;
+          while (l < r && nums[l] == nums[l - 1]) {
+            l++;
+          }
         }
       }
     }
-    return ret;
+    return res;
   }
 
   public int maxArea(int[] height) {
@@ -206,17 +204,21 @@ public class TwoPointers {
   // 2 3 4 5 6 7 1
   // L M R
   public int findMin(int[] nums) {
-    int left = 0, right = nums.length - 1;
-    while (left < right) {
-      int mid = left + (right - left) / 2;
+    int l = 0;
+    int r = nums.length - 1;
 
-      if (nums[mid] < nums[right]) {
-        right = mid;
+    while (l <= r) {
+      if (nums[l] <= nums[r]) {
+        return nums[l];
+      }
+
+      int mid = (l + r) / 2;
+      if (nums[mid] >= nums[l]) {
+        l = mid + 1;
       } else {
-        left = mid + 1;
+        r = mid;
       }
     }
-
-    return nums[left];
+    return 0;
   }
 }

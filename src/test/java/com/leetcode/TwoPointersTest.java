@@ -97,11 +97,6 @@ public class TwoPointersTest {
     assertEquals(1, twoPointers.findMin(new int[] { 3, 4, 5, 1, 2 }));
     assertEquals(0, twoPointers.findMin(new int[] { 4, 5, 6, 7, 0, 1, 2 }));
     assertEquals(11, twoPointers.findMin(new int[] { 11, 13, 15, 17 }));
-    // assertEquals(-1,
-    // twoPointers.binarySearchRightMost(
-    // new int[] { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150,
-    // 160, 170 },
-    // 8));
     assertEquals(1, twoPointers.findMin(new int[] { 3, 1, 2 }));
   }
 }

@@ -39,39 +39,27 @@ public class ArraysAndHashing {
   }
 
   public boolean isValid(String s) {
-    var charArray = s.toCharArray();
-    var openMatching = new Stack<Character>();
-    for (char c : charArray) {
-      if (c == '(' || c == '{' || c == '[') {
-        openMatching.add(c);
-      } else {
-        if (openMatching.size() == 0) {
+    Stack<Character> brackets = new Stack<>();
+    Map<Character, Character> bracketLookup = new HashMap<>(3);
+
+    bracketLookup.put(')', '(');
+    bracketLookup.put('}', '{');
+    bracketLookup.put(']', '[');
+
+    for (int i = 0; i < s.length(); i++) {
+      char c = s.charAt(i);
+      if (bracketLookup.containsKey(c)) {
+        if (!brackets.isEmpty() && bracketLookup.get(c).equals(brackets.peek())) {
+          brackets.pop();
+        } else {
           return false;
         }
-        var open = Optional.ofNullable(openMatching.removeLast()).orElse(null);
-        System.out.printf("open:%c | close:%c\n", open, c);
-        switch (c) {
-          case ')':
-            if (c == ')' && open != '(') {
-              return false;
-            }
-            break;
-          case '}':
-            if (c == '}' && open != '{') {
-              return false;
-            }
-            break;
-          case ']':
-            if (c == ']' && open != '[') {
-              return false;
-            }
-            break;
-          default:
-            return false;
-        }
+      } else {
+        brackets.push(c);
       }
     }
-    return openMatching.size() == 0;
+
+    return brackets.isEmpty();
   }
 
   public int[] twoSum(int[] nums, int target) {

@@ -8,11 +8,9 @@ import org.junit.jupiter.api.Test;
 import com.leetcode.util.TreeNode;
 
 public class TreeUtilTest {
-
+  TreeUtil treeUtil = new TreeUtil();
   @Test
   public void testInorderTraversal() {
-    TreeUtil treeUtil = new TreeUtil();
-
     TreeNode root = new TreeNode(2);
     root.left = new TreeNode(1);
     root.right = new TreeNode(3);
@@ -21,8 +19,6 @@ public class TreeUtilTest {
 
   @Test
   public void testPreorderTraversal() {
-    TreeUtil treeUtil = new TreeUtil();
-
     TreeNode root = new TreeNode(2);
     root.left = new TreeNode(1);
     root.right = new TreeNode(3);
@@ -31,8 +27,6 @@ public class TreeUtilTest {
 
   @Test
   public void testPostorderTraversal() {
-    TreeUtil treeUtil = new TreeUtil();
-
     TreeNode root = new TreeNode(2);
     root.left = new TreeNode(1);
     root.right = new TreeNode(3);
@@ -41,8 +35,6 @@ public class TreeUtilTest {
 
   @Test
   public void testValidBST() {
-    TreeUtil treeUtil = new TreeUtil();
-
     // Test Case 1: Valid BST
     TreeNode root1 = new TreeNode(2);
     root1.left = new TreeNode(1);
@@ -74,14 +66,12 @@ public class TreeUtilTest {
     root5.left.right.left = new TreeNode(4);
     root5.left.right.right = new TreeNode(7);
     root5.right.right = new TreeNode(14);
-    root5.right.right.left = new TreeNode(13);
+    root5.right.right.left = new TreeNode(7);
     assertTrue(treeUtil.isValidBST(root5), "Test Case 5 Failed");
   }
 
   @Test
   public void testInsertIntoBST() {
-    TreeUtil treeUtil = new TreeUtil();
-
     TreeNode root = new TreeNode(4);
     root.left = new TreeNode(2);
     root.left.left = new TreeNode(1);
@@ -105,8 +95,6 @@ public class TreeUtilTest {
 
   @Test
   public void testMaxDepth() {
-    TreeUtil treeUtil = new TreeUtil();
-
     TreeNode root = new TreeNode(4);
     root.left = new TreeNode(2);
     root.left.left = new TreeNode(1);
@@ -127,8 +115,6 @@ public class TreeUtilTest {
 
   @Test
   public void testIsSymmetric() {
-    TreeUtil treeUtil = new TreeUtil();
-
     TreeNode root = new TreeNode(4);
     root.left = new TreeNode(2);
     root.left.left = new TreeNode(1);
@@ -157,8 +143,6 @@ public class TreeUtilTest {
 
   @Test
   public void testLevelOrder() {
-    TreeUtil treeUtil = new TreeUtil();
-
     TreeNode root = new TreeNode(4);
     root.left = new TreeNode(2);
     root.left.left = new TreeNode(1);
@@ -189,8 +173,6 @@ public class TreeUtilTest {
 
   @Test
   public void testLowestCommonAncestor() {
-    TreeUtil treeUtil = new TreeUtil();
-
     TreeNode root = new TreeNode(6);
     root.left = new TreeNode(2);
     root.right = new TreeNode(8);
@@ -222,8 +204,6 @@ public class TreeUtilTest {
 
   @Test
   public void testDeleteNode() {
-    TreeUtil treeUtil = new TreeUtil();
-
     TreeNode root = new TreeNode(6);
     root.left = new TreeNode(2);
     root.right = new TreeNode(8);
@@ -244,8 +224,6 @@ public class TreeUtilTest {
 
   @Test
   public void testIsBalanced() {
-    TreeUtil treeUtil = new TreeUtil();
-
     TreeNode root = new TreeNode(6);
     root.left = new TreeNode(2);
     root.right = new TreeNode(8);
@@ -264,5 +242,70 @@ public class TreeUtilTest {
     assertFalse(treeUtil.isBalanced(root));
     treeUtil.maxDepth(root);
     assertFalse(treeUtil.isBalanced());
+  }
+
+  @Test
+  public void testIsSameTree() {
+    TreeNode p = new TreeNode(6);
+    p.left = new TreeNode(2);
+    p.right = new TreeNode(8);
+    p.left.left = new TreeNode(0);
+    p.left.right = new TreeNode(4);
+    p.right.left = new TreeNode(7);
+    p.right.right = new TreeNode(9);
+    p.left.right.left = new TreeNode(3);
+    p.left.right.right = new TreeNode(5);
+
+    TreeNode q = new TreeNode(6);
+    q.left = new TreeNode(2);
+    q.right = new TreeNode(8);
+    q.left.left = new TreeNode(0);
+    q.left.right = new TreeNode(4);
+    q.right.left = new TreeNode(7);
+    q.right.right = new TreeNode(9);
+    q.left.right.left = new TreeNode(3);
+    q.left.right.right = new TreeNode(5);
+
+    assertTrue(treeUtil.isSameTree(p,q));
+
+    TreeNode p1 = new TreeNode(6);
+    p.left = new TreeNode(2);
+    p.right = new TreeNode(8);
+
+    TreeNode q2 = new TreeNode(6);
+    q.left = new TreeNode(8);
+    q.right = new TreeNode(2);
+
+    assertFalse(treeUtil.isSameTree(p1,q2));
+
+  }
+
+
+  @Test
+  public void testParseJson() {
+    String jsonData = "{\n" + //
+        "    \"glossary\": {\n" + //
+        "        \"title\": \"example glossary\",\n" + //
+        "\t\t\"GlossDiv\": {\n" + //
+        "            \"title\": \"S\",\n" + //
+        "\t\t\t\"GlossList\": {\n" + //
+        "                \"GlossEntry\": {\n" + //
+        "                    \"ID\": \"SGML\",\n" + //
+        "\t\t\t\t\t\"SortAs\": \"SGML\",\n" + //
+        "\t\t\t\t\t\"GlossTerm\": \"Standard Generalized Markup Language\",\n" + //
+        "\t\t\t\t\t\"Acronym\": \"SGML\",\n" + //
+        "\t\t\t\t\t\"Abbrev\": \"ISO 8879:1986\",\n" + //
+        "\t\t\t\t\t\"GlossDef\": {\n" + //
+        "                        \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\",\n"
+        + //
+        "\t\t\t\t\t\t\"GlossSeeAlso\": [\"GML\", \"XML\"]\n" + //
+        "                    },\n" + //
+        "\t\t\t\t\t\"GlossSee\": \"markup\"\n" + //
+        "                }\n" + //
+        "            }\n" + //
+        "        }\n" + //
+        "    }\n" + //
+        "}";
+    treeUtil.parseJson(jsonData);
   }
 }
