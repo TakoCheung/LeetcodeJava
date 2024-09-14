@@ -1,7 +1,6 @@
 package com.leetcode;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.leetcode.util.ListNode;
@@ -95,6 +94,14 @@ public class BigO {
     nxt.next = head;
     head.next = null;
     return newHead;
+  }
+
+  public int hammingWeight(int n) {
+    int ret = 0;
+    for (int i = 0; i < 32; i++) {
+      ret += n >> i & 1;
+    }
+    return ret;
   }
 
 }

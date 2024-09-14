@@ -1,10 +1,7 @@
 package com.leetcode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 public class Backtracking {
   public List<List<Integer>> permutation(int[] nums) {
     List<List<Integer>> ret = new ArrayList<>();

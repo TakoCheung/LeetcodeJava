@@ -1,6 +1,7 @@
 package com.leetcode;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -52,5 +53,10 @@ public class ArraysAndHashingTest {
   @Test
   public void testIsValid() {
     assertTrue( arraysAndHashing.isValid("[{()}]"));
+  }
+
+  @Test
+  public void testLongestSubarray() {
+    assertEquals(2, arraysAndHashing.longestSubarray(new int[] {1,2,3,3,2,2}));
   }
 }

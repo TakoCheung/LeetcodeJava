@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.Stack;
 
@@ -277,4 +276,19 @@ public class ArraysAndHashing {
     return openMatching.size() == 0;
   }
 
+  public int longestSubarray(int[] nums) {
+    // Arrays.sort(nums);
+    int max = Integer.MIN_VALUE;
+    int count = 0;
+    for (int i = nums.length - 1; i >= 1; i--) {
+      // int tmp = nums[i] & nums[i - 1];
+      if (nums[i] == nums[i - 1]) {
+        count++;
+      } else {
+        count = 0;
+      }
+      max = Math.max(count, max);
+    }
+    return max + 1;
+  }
 }

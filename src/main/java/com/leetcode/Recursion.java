@@ -1,11 +1,11 @@
 package com.leetcode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import com.leetcode.util.ListNode;
 import com.leetcode.util.TreeNode;
 
 public class Recursion {
@@ -408,14 +408,27 @@ public class Recursion {
     return ret;
   }
 
-  public void permuteH(int[] nums,List<List<Integer>> ret, List<Integer> permutation, int idx) {
-    if(permutation.size() == nums.length){
+  public void permuteH(int[] nums, List<List<Integer>> ret, List<Integer> permutation, int idx) {
+    if (permutation.size() == nums.length) {
       ret.add(new ArrayList<>(permutation));
     }
-    if(idx >= nums.length) return;
+    if (idx >= nums.length)
+      return;
     permutation.add(nums[idx]);
-    permuteH(nums, ret, permutation, idx+1);
+    permuteH(nums, ret, permutation, idx + 1);
     permutation.remove(permutation.size() - 1);
-    permuteH(nums, ret, permutation, idx+1);
+    permuteH(nums, ret, permutation, idx + 1);
+  }
+
+  public ListNode swapPairs(ListNode head) {
+    if (head == null || head.next == null) {
+      return head; // Nothing to swap or only one node
+    }
+
+    ListNode newHead = head.next; // The second node will be the new head after swapping
+    head.next = swapPairs(head.next.next); // Recursive call to swap the rest
+    newHead.next = head; // Now swap the current pair
+
+    return newHead;
   }
 }

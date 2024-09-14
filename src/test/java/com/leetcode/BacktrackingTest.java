@@ -2,8 +2,6 @@ package com.leetcode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertLinesMatch;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 

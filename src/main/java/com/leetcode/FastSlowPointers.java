@@ -1,8 +1,5 @@
 package com.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.leetcode.util.ListNode;
 
 public class FastSlowPointers {
