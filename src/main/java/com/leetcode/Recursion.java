@@ -1,6 +1,7 @@
 package com.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -422,13 +423,104 @@ public class Recursion {
 
   public ListNode swapPairs(ListNode head) {
     if (head == null || head.next == null) {
-      return head; // Nothing to swap or only one node
+      return head;
     }
 
-    ListNode newHead = head.next; // The second node will be the new head after swapping
-    head.next = swapPairs(head.next.next); // Recursive call to swap the rest
-    newHead.next = head; // Now swap the current pair
+    ListNode newHead = head.next;
+    head.next = swapPairs(head.next.next);
+    newHead.next = head;
 
     return newHead;
   }
+
+  public List<List<Integer>> generate(int numRows) {
+    List<List<Integer>> ret = new ArrayList<>();
+    generateH(numRows, ret);
+    return ret;
+  }
+
+  public void generateH(int numRows, List<List<Integer>> ret) {
+    if (numRows <= 1) {
+      ret.add(new ArrayList<>() {
+        {
+          add(1);
+        }
+      });
+      return;
+    }
+    generateH(numRows - 1, ret);
+    List<Integer> currentRow = new ArrayList<>(numRows) {
+      {
+        add(1);
+      }
+    };
+    int i = 1;
+    while (i < numRows) {
+      currentRow.add(ret.get(numRows - 1).get(i) + ret.get(numRows - 1).get(i - 1));
+      i++;
+    }
+    ret.add(currentRow);
+  }
+
+  public double myPow(double x, int n) {
+    if (n == 0)
+      return 1;
+    if (n < 0) {
+      x = 1 / x;
+      n = -n;
+    }
+    return myPowH(x, n, 1);
+  }
+
+  public double myPowH(double x, int n, double accu) {
+    int half = n / 2;
+    while (half-- > 0) {
+      accu *= x;
+    }
+    if (n % 2 == 0)
+      return accu * accu;
+    else
+      return accu * accu * x;
+  }
+
+  public String largestNumber(int[] nums) {
+    String[] array = new String[nums.length];
+    for (int i = 0; i < nums.length; i++) {
+      array[i] = String.valueOf(nums[i]);
+    }
+    Arrays.sort(array, (a, b) -> (b + a).compareTo(a + b));
+    if (array[0].equals("0")) {
+      return "0";
+    }
+    StringBuilder largest = new StringBuilder();
+    for (int i = 0; i < array.length; i++) {
+      largest.append(array[i]);
+    }
+    return largest.toString();
+  }
+
+  public List<Integer> diffWaysToCompute(String expression) {
+    List<Integer> res = new ArrayList<>();
+    for (int i = 0; i < expression.length(); ++i) {
+      char oper = expression.charAt(i);
+      if (oper == '+' || oper == '-' || oper == '*') {
+        List<Integer> s1 = diffWaysToCompute(expression.substring(0, i));
+        List<Integer> s2 = diffWaysToCompute(expression.substring(i + 1));
+        for (int a : s1) {
+          for (int b : s2) {
+            if (oper == '+')
+              res.add(a + b);
+            else if (oper == '-')
+              res.add(a - b);
+            else if (oper == '*')
+              res.add(a * b);
+          }
+        }
+      }
+    }
+    if (res.isEmpty())
+      res.add(Integer.parseInt(expression));
+    return res;
+  }
+
 }

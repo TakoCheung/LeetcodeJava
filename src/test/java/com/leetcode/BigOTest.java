@@ -11,6 +11,7 @@ public class BigOTest {
   @Test
   public void testFactorial() {
     assertEquals(24, bigO.factorial(4));
+    assertEquals(24, bigO.factorial(4, 1));
   }
 
   @Test
@@ -22,6 +23,7 @@ public class BigOTest {
     assertEquals(3, bigO.fibonacci(4));
     assertEquals(5, bigO.fibonacci(5));
     assertEquals(8, bigO.fibonacci(6));
+    assertEquals(8, bigO.fibonacci(6, 0, 1));
   }
 
   @Test

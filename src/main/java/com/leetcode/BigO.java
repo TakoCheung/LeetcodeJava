@@ -6,13 +6,20 @@ import java.util.Map;
 import com.leetcode.util.ListNode;
 
 public class BigO {
-  public int factorial(int n) {// 1^n
+  public int factorial(int n) {// 1^n 2n
     if (n < 0)
       return -1;
     else if (n == 0)
       return 1;
     else
       return n * factorial(n - 1);
+  }
+
+  public int factorial(int n, int accumalator) {// 1^n
+    if (n == 0)
+      return accumalator;
+    else
+      return factorial(n - 1, accumalator*n);
   }
 
   public int fibonacci(int n) {// 2^n
@@ -33,6 +40,11 @@ public class BigO {
     }
     hashmap.put(n, fibonacci(n - 1) + fibonacci(n - 2));
     return hashmap.get(n);
+  }
+  public int fibonacci(int n, int a, int b) {// 2^n
+    if (n == 0 || n==1)
+      return b;
+    return fibonacci(n-1, b, b+a);
   }
 
   public String printAllFibonacciNums(int n) { // n * 2^n

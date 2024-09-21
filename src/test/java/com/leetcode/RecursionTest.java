@@ -68,9 +68,9 @@ public class RecursionTest {
   @Test
   public void testWordSearch() {
     char[][] board = new char[][] {
-      {'A', 'B', 'C', 'E'},
-      {'S', 'F', 'C', 'S'},
-      {'A', 'D', 'E', 'E'}
+        { 'A', 'B', 'C', 'E' },
+        { 'S', 'F', 'C', 'S' },
+        { 'A', 'D', 'E', 'E' }
     };
     // assertTrue(recursion.exist(board, "ABCCED"));
     // assertTrue(recursion.exist(board, "SEE"));
@@ -78,7 +78,26 @@ public class RecursionTest {
 
   @Test
   public void testSubsets() {
-    var actual = recursion.subsets(new int[] { 1, 2, 3});
-    assertArrayEquals(new int[] { 1,2,3 }, actual.get(0).stream().mapToInt(Integer::intValue).toArray());
+    var actual = recursion.subsets(new int[] { 1, 2, 3 });
+    assertArrayEquals(new int[] { 1, 2, 3 }, actual.get(0).stream().mapToInt(Integer::intValue).toArray());
+  }
+
+  @Test
+  public void testGenerate() {
+    var actual = recursion.generate(5);
+    // assertArrayEquals(new int[] { 1,2,3 },
+    // actual.get(0).stream().mapToInt(Integer::intValue).toArray());
+  }
+
+  @Test
+  public void testLargestNumber() {
+    var actual = recursion.largestNumber(new int[]{8308,8308,830});
+    assertEquals("83088308830", actual);
+  }
+
+  @Test
+  public void testDiffWaysToCompute() {
+    var actual = recursion.diffWaysToCompute("2*3-4*5");
+
   }
 }
