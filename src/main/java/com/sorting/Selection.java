@@ -10,13 +10,7 @@ public class Selection {
         minIndex = toBeSorted[minIndex] > toBeSorted[j] ? j : minIndex;
       }
       if (i != minIndex)
-        swap(toBeSorted, i, minIndex);
+        Util.swap(toBeSorted, i, minIndex);
     }
-  }
-
-  private static void swap(int[] toBeSorted, int i, int j) {
-    toBeSorted[i] = toBeSorted[i] ^ toBeSorted[j];
-    toBeSorted[j] = toBeSorted[i] ^ toBeSorted[j];
-    toBeSorted[i] = toBeSorted[i] ^ toBeSorted[j];
   }
 }
