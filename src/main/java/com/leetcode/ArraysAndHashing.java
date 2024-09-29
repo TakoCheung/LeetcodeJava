@@ -291,4 +291,24 @@ public class ArraysAndHashing {
     }
     return max + 1;
   }
+
+  public int[] merge(int[] a, int[] b){
+    int[] merger = new int[a.length + b.length];
+    int aIdx = 0;
+    int bIdx = 0;
+    int mIdx = 0;
+    Arrays.sort(a);
+    Arrays.sort(b);
+
+    while (aIdx < a.length && bIdx < b.length) {
+      merger[mIdx++] = a[aIdx] <= b[bIdx] ? a[aIdx++]: b[bIdx++];
+    }
+    while (aIdx < a.length ) {
+      merger[mIdx++] = a[aIdx++];
+    }
+    while (bIdx < b.length ) {
+      merger[mIdx++] = b[bIdx++];
+    }
+    return merger;
+  }
 }

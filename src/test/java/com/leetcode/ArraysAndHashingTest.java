@@ -59,4 +59,9 @@ public class ArraysAndHashingTest {
   public void testLongestSubarray() {
     assertEquals(2, arraysAndHashing.longestSubarray(new int[] {1,2,3,3,2,2}));
   }
+
+  @Test
+  public void testMerge() {
+    assertArrayEquals(new int[]{1,2,2,2,2,3,3,3,6,7,8,9,66,97}, arraysAndHashing.merge(new int[] {1,2,3,3,2,2}, new int[]{9,3,6,2,66,7,8,97}));
+  }
 }

@@ -1,23 +1,19 @@
 package com.sorting;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
 import com.TestUtil;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InsertionTest {
-  private final int MAX_TEST_RUN = 500000;
 
   @Test
   public void Sort_CompareWithArraysSort_Sorted() {// MethodName_StateUnderTest_ExpectedBehavior
     int run = 0;
-    while (run++ < MAX_TEST_RUN) {
+    while (run++ < TestUtil.MAX_TEST_RUN) {
       int[] beingTested = TestUtil.generateRandomArray(100, 10000);
       int[] validator = TestUtil.deepCopy(beingTested);
       Insertion.sort(beingTested);
@@ -38,5 +34,4 @@ public class InsertionTest {
       assertTrue(beingTested[i] == validator[i]);
     }
   }
-
 }

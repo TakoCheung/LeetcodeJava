@@ -176,5 +176,13 @@ public class StringPratice {
       return right;
     }
   }
+  public int minExtraChar(String s, String[] dictionary) {
+    int ret = 0;
+    StringBuilder sb = new StringBuilder();
+    for (String string : dictionary) {
+      sb.append(string);
+    }
+    return ret;
+  }
 
 }
