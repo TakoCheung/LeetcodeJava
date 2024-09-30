@@ -22,30 +22,7 @@ public class Merge {
     int mid = left + ((right - left) >> 1);// left + (right - left)/2 | 0 + (toBeSorted.length - 0)/2
     divide(toBeSorted, left, mid);
     divide(toBeSorted, mid + 1, right);
-    conquer(toBeSorted, left, mid, right);
-  }
-
-  private static void conquer(int[] toBeSorted, int left, int mid, int right) {
-    int[] merger = new int[right - left + 1];
-    int leftIdx = left;
-    int rightIdx = mid + 1;
-    int idx = 0;
-
-    while (leftIdx <= mid && rightIdx <= right) {
-      merger[idx++] = toBeSorted[leftIdx] <= toBeSorted[rightIdx] ? toBeSorted[leftIdx++] : toBeSorted[rightIdx++];
-    }
-    while (leftIdx <= mid) {
-      merger[idx++] = toBeSorted[leftIdx++];
-    }
-    while (rightIdx <= right) {
-      merger[idx++] = toBeSorted[rightIdx++];
-    }
-    // System.out.printf("left:%d | right:%d\n", left, right);
-    for (idx = 0; idx < merger.length; idx++) {
-      // System.out.printf("idx:%d | left:%d | merger[idx]:%d\n", idx, left,
-      // merger[idx]);
-      toBeSorted[left + idx] = merger[idx];
-    }
+    Util.conquer(toBeSorted, left, mid, right);
   }
 
   public static int sumAllSmaller(int[] toBeCalculated) {
@@ -65,26 +42,26 @@ public class Merge {
         sumAllSmallerConquer(toBeCalculated, left, mid, right);
   }
 
-  private static int sumAllSmallerConquer(int[] toBeCalculated, int left, int mid, int right) {
-    int[] merger = new int[right - left + 1];
-    int leftIdx = left;
-    int rightIdx = mid + 1;
+  private static int sumAllSmallerConquer(int[] toBeCalculated, int start, int mid, int end) {
+    int[] merger = new int[end - start + 1];
+    int leftIdx = start;//left pointer
+    int rightIdx = mid + 1;//right pointer
     int idx = 0;
     int res = 0;
 
-    while (leftIdx <= mid && rightIdx <= right) {
-      res += toBeCalculated[leftIdx] < toBeCalculated[rightIdx] ? (right - rightIdx + 1) * toBeCalculated[leftIdx] : 0;
+    while (leftIdx <= mid && rightIdx <= end) {
+      res += toBeCalculated[leftIdx] < toBeCalculated[rightIdx] ? (end - rightIdx + 1) * toBeCalculated[leftIdx] : 0;
       merger[idx++] = toBeCalculated[leftIdx] < toBeCalculated[rightIdx] ? toBeCalculated[leftIdx++]
           : toBeCalculated[rightIdx++];
     }
     while (leftIdx <= mid) {
       merger[idx++] = toBeCalculated[leftIdx++];
     }
-    while (rightIdx <= right) {
+    while (rightIdx <= end) {
       merger[idx++] = toBeCalculated[rightIdx++];
     }
     for (idx = 0; idx < merger.length; idx++) {
-      toBeCalculated[left + idx] = merger[idx];
+      toBeCalculated[start + idx] = merger[idx];
     }
     return res;
   }

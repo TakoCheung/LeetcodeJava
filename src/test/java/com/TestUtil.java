@@ -5,7 +5,7 @@ import java.util.Random;
 public class TestUtil {
   private static final Random random = new Random();
   public static final int MAX_TEST_RUN = 100000;
-  public static final int NLOGN_INPUT_SIZE = 500000;
+  public static final int NLOGN_INPUT_SIZE = 1000000;
   public static final int QUADRATIC_INPUT_SIZE = 5000;
   public static final int CUBIC_INPUT_SIZE = 500;
   public static final int EXPONENTIAL_INPUT_SIZE = 30;
