@@ -3,6 +3,7 @@ package com.leetcode;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -98,5 +99,17 @@ public class TwoPointersTest {
     assertEquals(0, twoPointers.findMin(new int[] { 4, 5, 6, 7, 0, 1, 2 }));
     assertEquals(11, twoPointers.findMin(new int[] { 11, 13, 15, 17 }));
     assertEquals(1, twoPointers.findMin(new int[] { 3, 1, 2 }));
+  }
+
+  @Test
+  public void testTest() {
+    HashMap<String, Integer> hs = new HashMap<String, Integer>();
+    hs.put("1234567890", 8);
+    hs.put("12345670", 8);
+    hs.put("12345890", 8);
+    hs.put("12345678903490", 8);
+
+    assertEquals("12345678903490", twoPointers.test(hs));
+    
   }
 }

@@ -1,7 +1,5 @@
 package com.sorting;
 
-import java.util.Random;
-
 public class Quick {
   /*
    * T(N) = a*T(N/b) + O(N^d)
