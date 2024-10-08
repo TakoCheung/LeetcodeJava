@@ -1,7 +1,7 @@
 package com.sorting;
 
 public class Selection {
-  public static void sort(int[] toBeSorted) {// Space: O(1), Time: O(n)
+  public static void sort(int[] toBeSorted) {// Space: O(1), Time: O(n^2)
     if (toBeSorted == null || toBeSorted.length < 2)
       return;
     for (int i = 0; i < toBeSorted.length - 1; i++) {

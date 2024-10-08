@@ -14,7 +14,7 @@ public class Quick {
     }
     sort(toBeSorted, 0, toBeSorted.length - 1);
   }
-
+  //T(N) = 2*T(N/2) + O(N) a = 2 b = 2 d = 1 => O(N*lgN)
   private static void sort(int[] toBeSorted, int start, int end){
     if(start < end){
       int randomPivot = start + (int)(Math.random()*(end-start+1));
