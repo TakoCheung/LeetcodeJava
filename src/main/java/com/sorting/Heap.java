@@ -3,6 +3,8 @@ package com.sorting;
  * leftChildIndex = 2*currentIndex + 1
  * rightChildIndex = 2*currentIndex + 2
  * parentIndex = (currentIndex-1)/2
+ * 
+ * Time: O(NlgN) | Space: O(1) | Preserve Order: No
  */
 public class Heap {
   public static void sort(int[] toBeSorted) {

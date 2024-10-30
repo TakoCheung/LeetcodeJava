@@ -9,8 +9,7 @@ public class Selection {
       for (int j = i + 1; j < toBeSorted.length; j++) {
         minIndex = toBeSorted[minIndex] > toBeSorted[j] ? j : minIndex;
       }
-      if (i != minIndex)
-        Util.swap(toBeSorted, i, minIndex);
+      Util.swap(toBeSorted, i, minIndex);
     }
   }
 }

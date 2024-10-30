@@ -7,6 +7,8 @@ public class Merge {
    * when log(b,a) > d => O(N^log(b,a))
    * when log(b,a) = d => O(N^d * log(2,N))
    * when log(b,a) < d => O(N^d)
+   * 
+   * Time: O(NlgN) | Space: O(N) | Preserve Order: Yes
    */
   public static void sort(int[] toBeSorted) {
     if (toBeSorted == null || toBeSorted.length < 1) {

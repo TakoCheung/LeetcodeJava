@@ -7,6 +7,8 @@ public class Quick {
    * when log(b,a) > d => O(N^log(b,a))
    * when log(b,a) = d => O(N^d * log(2,N))
    * when log(b,a) < d => O(N^d)
+   * 
+   * Time: O(NlgN) | Space: O(lgN) | Preserve Order: No
    */
   public static void sort(int[] toBeSorted) {
     if (toBeSorted == null || toBeSorted.length < 2) {
