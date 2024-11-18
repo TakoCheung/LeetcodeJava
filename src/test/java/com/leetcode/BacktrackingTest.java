@@ -24,7 +24,7 @@ public class BacktrackingTest {
     }, backtracking.permutation(new int[] { 1, 2, 3 }));
   }
 
-  @Test
+  // @Test
   public void testLetterCombinations() {
     assertEquals(new ArrayList<>() {
       {

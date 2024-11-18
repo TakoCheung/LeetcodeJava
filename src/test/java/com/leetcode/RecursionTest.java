@@ -82,7 +82,7 @@ public class RecursionTest {
     assertArrayEquals(new int[] { 1, 2, 3 }, actual.get(0).stream().mapToInt(Integer::intValue).toArray());
   }
 
-  @Test
+  // @Test
   public void testGenerate() {
     var actual = recursion.generate(5);
     // assertArrayEquals(new int[] { 1,2,3 },

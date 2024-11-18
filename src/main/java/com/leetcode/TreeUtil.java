@@ -255,8 +255,24 @@ public class TreeUtil {
 
     return false;
   }
-  // public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
-        
-  // }
+  
+  public List<TreeNode> preorderTraversalIterative(TreeNode root){
+    List<TreeNode> linkedList = new ArrayList<>();
+    if(root != null){
+      Stack<TreeNode> stack = new Stack<>();
+      stack.add(root);
+      while (!stack.empty()) {
+        var temp = stack.pop();
+        linkedList.add(temp);
+        if (temp.right != null) {
+          stack.add(temp.right);
+        }
+        if (temp.left != null) {
+          stack.add(temp.left);
+        }
+      }
+    }
+    return linkedList;
+  }
 
 }

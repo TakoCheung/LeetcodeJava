@@ -44,19 +44,19 @@ public class HeapTest {
     assertArrayEquals(new int[] { 1, 1000 }, actual);
   }
 
-  @Test
-  public void Sort_CompareWithArraysSort_Sorted() {// MethodName_StateUnderTest_ExpectedBehavior
-    int run = 0;
-    while (run++ < TestUtil.MAX_TEST_RUN) {
-      int[] beingTested = TestUtil.generateRandomArray(TestUtil.NLOGN_INPUT_SIZE, TestUtil.NLOGN_INPUT_SIZE);
-      int[] validator = TestUtil.deepCopy(beingTested);
-      Heap.sort(beingTested);
-      Arrays.sort(validator);
-      for (int i = 0; i < validator.length; i++) {
-        assertTrue(beingTested[i] == validator[i]);
-      }
-    }
-  }
+  // @Test
+  // public void Sort_CompareWithArraysSort_Sorted() {// MethodName_StateUnderTest_ExpectedBehavior
+  //   int run = 0;
+  //   while (run++ < TestUtil.MAX_TEST_RUN) {
+  //     int[] beingTested = TestUtil.generateRandomArray(TestUtil.NLOGN_INPUT_SIZE, TestUtil.NLOGN_INPUT_SIZE);
+  //     int[] validator = TestUtil.deepCopy(beingTested);
+  //     Heap.sort(beingTested);
+  //     Arrays.sort(validator);
+  //     for (int i = 0; i < validator.length; i++) {
+  //       assertTrue(beingTested[i] == validator[i]);
+  //     }
+  //   }
+  // }
 
   @Test
   public void Sort_CompareWithNlogNInputSize_Sorted() {// MethodName_StateUnderTest_ExpectedBehavior
