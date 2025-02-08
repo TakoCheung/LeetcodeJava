@@ -10,7 +10,7 @@ public class Merge {
    * 
    * Time: O(NlgN) | Space: O(N) | Preserve Order: Yes
    */
-  public static void sort(int[] toBeSorted) {
+  public static void sort(int[] toBeSorted) { 
     if (toBeSorted == null || toBeSorted.length < 1) {
       return;
     }

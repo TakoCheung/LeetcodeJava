@@ -48,7 +48,7 @@ public class ArraysAndHashing {
     for (int i = 0; i < s.length(); i++) {
       char c = s.charAt(i);
       if (bracketLookup.containsKey(c)) {
-        if (!brackets.isEmpty() && bracketLookup.get(c).equals(brackets.peek())) {
+        if (!brackets.isEmpty() && bracketLookup.get(c).equals(brackets.peek())) { 
           brackets.pop();
         } else {
           return false;

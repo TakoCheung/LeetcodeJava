@@ -275,4 +275,23 @@ public class TreeUtil {
     return linkedList;
   }
 
+  public List<TreeNode> inorderTraversalIterative(TreeNode root){
+    List<TreeNode> linkedList = new ArrayList<>();
+    if(root != null){
+      Stack<TreeNode> stack = new Stack<>();
+      while (!stack.empty() || root != null) {
+        if (root != null) {
+          stack.add(root);
+          root = root.left;
+        }
+        else {
+          root = stack.pop();
+          linkedList.add(root);
+          root = root.right;
+        }
+      }
+    }
+    return linkedList;
+  }
+
 }
