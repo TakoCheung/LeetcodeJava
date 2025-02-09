@@ -338,10 +338,6 @@ public class TreeUtilTest {
     root.right.right = new TreeNode(9);
     root.left.right.left = new TreeNode(3);
     root.left.right.right = new TreeNode(5);
-    //    6
-    //   2 8
-    //  0 4 7 9
-    // 3 5
     List<TreeNode> preordered = treeUtil.inorderTraversalIterative(root);
     assertArrayEquals(new int[] { 0,2,3,4,5,6,7,8,9 },
         preordered.stream().mapToInt(value -> value.val).toArray());
