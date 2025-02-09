@@ -287,6 +287,7 @@ public class TreeUtil {
         else {
           root = stack.pop();
           linkedList.add(root);
+          System.out.println(root.val);
           root = root.right;
         }
       }

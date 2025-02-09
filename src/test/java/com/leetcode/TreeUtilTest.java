@@ -342,8 +342,8 @@ public class TreeUtilTest {
     //   2 8
     //  0 4 7 9
     // 3 5
-    List<TreeNode> preordered = treeUtil.preorderTraversalIterative(root);
-    assertArrayEquals(new int[] { 3,0,5,2,4,6,7,8,9 },
+    List<TreeNode> preordered = treeUtil.inorderTraversalIterative(root);
+    assertArrayEquals(new int[] { 0,2,3,4,5,6,7,8,9 },
         preordered.stream().mapToInt(value -> value.val).toArray());
   }
 }
