@@ -342,4 +342,20 @@ public class TreeUtilTest {
     assertArrayEquals(new int[] { 0,2,3,4,5,6,7,8,9 },
         preordered.stream().mapToInt(value -> value.val).toArray());
   }
+
+  @Test
+  public void testPostorderTraversalIterative() {
+    TreeNode root = new TreeNode(6);
+    root.left = new TreeNode(2);
+    root.right = new TreeNode(8);
+    root.left.left = new TreeNode(0);
+    root.left.right = new TreeNode(4);
+    root.right.left = new TreeNode(7);
+    root.right.right = new TreeNode(9);
+    root.left.right.left = new TreeNode(3);
+    root.left.right.right = new TreeNode(5);
+    List<TreeNode> preordered = treeUtil.postorderTraversalIterative(root);
+    assertArrayEquals(new int[] { 0,3,5,4,2,7,9,8,6 },
+        preordered.stream().mapToInt(value -> value.val).toArray());
+  }
 }

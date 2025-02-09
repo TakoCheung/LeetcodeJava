@@ -295,4 +295,22 @@ public class TreeUtil {
     return linkedList;
   }
 
+  public List<TreeNode> postorderTraversalIterative(TreeNode root){
+    List<TreeNode> linkedList = new ArrayList<>();
+    if(root != null){
+      Stack<TreeNode> stack = new Stack<>();
+      stack.add(root);
+      while (!stack.empty()) {
+        var temp = stack.pop();
+        linkedList.add(temp);
+        if (temp.left != null) {
+          stack.add(temp.left);
+        }
+        if (temp.right != null) {
+          stack.add(temp.right);
+        }
+      }
+    }
+    return linkedList.reversed();
+  }
 }
