@@ -354,8 +354,26 @@ public class TreeUtilTest {
     root.right.right = new TreeNode(9);
     root.left.right.left = new TreeNode(3);
     root.left.right.right = new TreeNode(5);
+    treeUtil.printTree(root);
     List<TreeNode> preordered = treeUtil.postorderTraversalIterative(root);
     assertArrayEquals(new int[] { 0,3,5,4,2,7,9,8,6 },
         preordered.stream().mapToInt(value -> value.val).toArray());
   }
+
+  @Test
+  public void testLevelOrderTravaersal() {
+    TreeNode root = new TreeNode(6);
+    root.left = new TreeNode(2);
+    root.right = new TreeNode(8);
+    root.left.left = new TreeNode(0);
+    root.left.right = new TreeNode(4);
+    root.right.left = new TreeNode(7);
+    root.right.right = new TreeNode(9);
+    root.left.right.left = new TreeNode(3);
+    root.left.right.right = new TreeNode(5);
+    List<List<Integer>> preordered = treeUtil.levelOrder(root);
+    assertArrayEquals(new int[] { 6, 2, 8, 0, 4, 7, 9, 3, 5 },
+        preordered.stream().flatMap(List::stream).mapToInt(value -> value).toArray());
+  }
+
 }

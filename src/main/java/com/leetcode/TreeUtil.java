@@ -211,8 +211,7 @@ public class TreeUtil {
 
   public Map<String, Object> parseJson(String jsonString) {
     Map<String, Object> parser = new HashMap<>();
-    return parseJsonHelper(jsonString, parser);
-  }
+    return parseJsonHelper(jsonString, parser);  }
 
   public Map<String, Object> parseJsonHelper(String jsonString, Map<String, Object> parser) {
     String[] keyValueStrings = jsonString.split(":");
@@ -222,8 +221,7 @@ public class TreeUtil {
       parser.put(keyValueStrings[0], parseJsonHelper(keyValueStrings[1], parser));
     }
 
-    return parser;
-  }
+    return parser;  }
 
   public TreeNode invertTree(TreeNode root) {
     invertTreeHelper(root);
@@ -255,7 +253,7 @@ public class TreeUtil {
 
     return false;
   }
-  
+  // head -> left -> right
   public List<TreeNode> preorderTraversalIterative(TreeNode root){
     List<TreeNode> linkedList = new ArrayList<>();
     if(root != null){
@@ -275,6 +273,7 @@ public class TreeUtil {
     return linkedList;
   }
 
+  // left -> head -> right
   public List<TreeNode> inorderTraversalIterative(TreeNode root){
     List<TreeNode> linkedList = new ArrayList<>();
     if(root != null){
@@ -295,6 +294,7 @@ public class TreeUtil {
     return linkedList;
   }
 
+  // left -> right -> head
   public List<TreeNode> postorderTraversalIterative(TreeNode root){
     List<TreeNode> linkedList = new ArrayList<>();
     if(root != null){
@@ -313,4 +313,86 @@ public class TreeUtil {
     }
     return linkedList.reversed();
   }
+
+  public List<TreeNode> levelOrderTraversal(TreeNode root){
+    List<TreeNode> linkedList = new ArrayList<>();
+    if(root != null){
+      Queue<TreeNode> queue = new LinkedList<>();
+      queue.add(root);
+      while (!queue.isEmpty()) {
+        var temp = queue.poll();
+        linkedList.add(temp);
+        if (temp.left != null) {
+          queue.add(temp.left);
+        }
+        if (temp.right != null) {
+          queue.add(temp.right);
+        }
+      }
+    }
+    return linkedList;
+  }
+  
+  // implement a printTree method which prints the tree level by level with link to the parent node and child node
+  public void printTree(TreeNode root) {
+    if (root == null) {
+      System.out.println("Empty tree");
+      return;
+    }
+    class NodeInfo {
+      TreeNode node;
+      TreeNode parent;
+      String relation; // "root", "left", "right"
+
+      NodeInfo(TreeNode node, TreeNode parent, String relation) {
+        this.node = node;
+        this.parent = parent;
+        this.relation = relation;
+      }
+    }
+
+    Queue<NodeInfo> queue = new LinkedList<>();
+    queue.add(new NodeInfo(root, null, "root"));
+    int level = 0;
+
+    while (!queue.isEmpty()) {
+      int levelSize = queue.size();
+      System.out.println("Level " + level + ":");
+      for (int i = 0; i < levelSize; i++) {
+        NodeInfo current = queue.poll();
+        if ("root".equals(current.relation)) {
+          System.out.println("[" + current.node.val + "]");
+        } else {
+          System.out.println("Parent " + current.parent.val + " -> " + current.relation + " child: " + current.node.val);
+        }
+        if (current.node.left != null) {
+          queue.add(new NodeInfo(current.node.left, current.node, "left"));
+        }
+        if (current.node.right != null) {
+          queue.add(new NodeInfo(current.node.right, current.node, "right"));
+        }
+      }
+      level++;
+    }
+  }
+
+
+
+  // public void printTree(TreeNode root) {
+  //   if (root == null) {
+  //     return;
+  //   }
+  //   Queue<TreeNode> queue = new LinkedList<>();
+  //   queue.add(root);
+  //   while (!queue.isEmpty()) {
+  //     TreeNode current = queue.poll();
+  //     System.out.println(current.val);
+  //     if (current.left != null) {
+  //       queue.add(current.left);
+  //     }
+  //     if (current.right != null) {
+  //       queue.add(current.right);
+  //     }
+  //   }
+  // }
 }
