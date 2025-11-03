@@ -48,7 +48,7 @@ public class ArraysAndHashing {
     for (int i = 0; i < s.length(); i++) {
       char c = s.charAt(i);
       if (bracketLookup.containsKey(c)) {
-        if (!brackets.isEmpty() && bracketLookup.get(c).equals(brackets.peek())) { 
+        if (!brackets.isEmpty() && bracketLookup.get(c).equals(brackets.peek())) {
           brackets.pop();
         } else {
           return false;
@@ -292,7 +292,7 @@ public class ArraysAndHashing {
     return max + 1;
   }
 
-  public int[] merge(int[] a, int[] b){
+  public int[] merge(int[] a, int[] b) {
     int[] merger = new int[a.length + b.length];
     int aIdx = 0;
     int bIdx = 0;
@@ -301,14 +301,68 @@ public class ArraysAndHashing {
     Arrays.sort(b);
 
     while (aIdx < a.length && bIdx < b.length) {
-      merger[mIdx++] = a[aIdx] <= b[bIdx] ? a[aIdx++]: b[bIdx++];
+      merger[mIdx++] = a[aIdx] <= b[bIdx] ? a[aIdx++] : b[bIdx++];
     }
-    while (aIdx < a.length ) {
+    while (aIdx < a.length) {
       merger[mIdx++] = a[aIdx++];
     }
-    while (bIdx < b.length ) {
+    while (bIdx < b.length) {
       merger[mIdx++] = b[bIdx++];
     }
     return merger;
+  }
+
+  public void merge(int[] nums1, int m, int[] nums2, int n) {
+    System.arraycopy(nums2, 0, nums1, m, n);
+    Arrays.sort(nums1);
+  }
+
+  public int removeDuplicates(int[] nums) {
+    int k = 0;
+    for (int x : nums) {
+      // System.out.println("b4: x: " + x + " | k: " + k + " | nums[k-2]: " + (k < 2 ?
+      // "N/A" : nums[k - 2]));
+      if (k < 2 || x != nums[k - 2]) {
+        nums[k++] = x;
+        // System.out.println("af: x: " + x + " | k: " + k + " | nums[k-2]: " + (k < 2 ?
+        // "N/A" : nums[k - 2]));
+      }
+    }
+    return k;
+  }
+
+  public void moveZeroes(int[] nums) {
+    int k = 0;
+    int zeros = 0;
+    for (int x : nums) {
+      if (x != 0) {
+        nums[k++] = x;
+      } else {
+        zeros++;
+      }
+    }
+    while (zeros > 0) {
+      nums[nums.length - zeros--] = 0;
+    }
+  }
+
+  public void sortColors(int[] nums) {
+    int low = 0, mid = 0, high = nums.length - 1;
+
+    while (mid <= high) {
+      System.out.printf("nums[mid]: %d , low: %d, mid: %d, high: %d\n", nums[mid], low, mid, high);
+      System.out.println(Arrays.toString(nums));
+      if (nums[mid] == 0) {
+        int temp = nums[low];
+        nums[low++] = nums[mid];
+        nums[mid++] = temp;
+      } else if (nums[mid] == 1) {
+        mid++;
+      } else { // nums[mid] == 2
+        int temp = nums[high];
+        nums[high--] = nums[mid];
+        nums[mid] = temp;
+      }
+    }
   }
 }
